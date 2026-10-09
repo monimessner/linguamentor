@@ -227,7 +227,25 @@
 <div style="margin-top:26px"><button class="btn primary" data-goto="practice">Jetzt üben →</button></div><div class="footer">Inhaltszusammenfassung auf Grundlage der bereitgestellten Folien. Die Formulierungen sind für das Selbststudium komprimiert.</div></section>
 <section class="view" id="practice"><div class="eyebrow">Selbsttest</div><h1>Teste dein Verständnis</h1><p class="lead">Beantworte die Fragen. Du erhältst direkt eine Rückmeldung und eine kurze Erklärung.</p><div class="tabs"><button class="tab active" data-q="0">1 · Satz oder Äußerung?</button><button class="tab" data-q="1">2 · Satzstruktur</button><button class="tab" data-q="2">3 · Satzarten</button><button class="tab" data-q="3">4 · Analyseebenen</button></div><div class="quizbox"><div id="quiz"></div><div style="display:flex;justify-content:space-between;gap:12px;margin-top:18px"><button class="btn" id="prev">← Zurück</button><button class="btn primary" id="check">Antwort prüfen</button><button class="btn" id="next">Weiter →</button></div><div id="qfeedback" class="hidden"></div></div><div class="callout"><strong>So lernst du am besten:</strong> Wenn du unsicher bist, versuche zuerst, deine Überlegung in eigenen Worten zu formulieren. Erst danach solltest du die Erklärung aufrufen.</div></section>
 <section class="view" id="mentor"><div class="eyebrow">Dialogische Unterstützung</div><h1>Frag den Mentor</h1><p class="lead">Stelle Fragen zur Einführung in die Syntax. In dieser ersten Vorschau zeigt ein regelbasierter Demo-Dialog, wie die spätere KI-Unterstützung aussehen könnte.</p><div class="mentor"><div class="chat"><div class="chatlog" id="chatlog"><div class="bubble">Hallo! Ich begleite dich durch die Grundlagen der Syntax. Was möchtest du klären? Du kannst zum Beispiel nach dem Unterschied zwischen Satz und Äußerung oder zwischen Koordination und Subordination fragen.</div></div><form class="chatform" id="chatform"><input id="chatinput" placeholder="Stelle eine Frage …" aria-label="Stelle eine Frage"><button class="btn primary" type="submit">Senden</button></form><p class="small">Demo-Modus: Antworten sind vorformulierte Beispiele, keine Live-KI-Antworten.</p></div><div><h2>Womit kann ich dir helfen?</h2><div class="hintlist"><div class="hint"><strong>„Was ist der Unterschied zwischen Satz und Äußerung?“</strong><br><button class="btn" data-prompt="Was ist der Unterschied zwischen Satz und Äußerung?">Frage auswählen</button></div><div class="hint"><strong>„Was bedeuten Koordination und Subordination?“</strong><br><button class="btn" data-prompt="Was bedeuten Koordination und Subordination?">Frage auswählen</button></div><div class="hint"><strong>„Kannst du mir Satzarten erklären?“</strong><br><button class="btn" data-prompt="Kannst du mir die drei Satzarten erklären?">Frage auswählen</button></div><div class="hint"><strong>„Gib mir einen Hinweis, aber nicht gleich die Lösung.“</strong><br><button class="btn" data-prompt="Gib mir einen Hinweis, aber nicht gleich die Lösung.">Frage auswählen</button></div></div></div></div></section>
-<section class="view" id="resources"><div class="eyebrow">Weiterlernen</div><h1>Ressourcen</h1><p class="lead">Eine wachsende Sammlung von Lernmaterialien und weiterführenden Ressourcen für die Lehrveranstaltung.</p><div class="card"><div class="resource"><div class="r-icon">📑</div><div><h3>Vorlesungsfolien</h3><p class="small">Die Folien der ersten Einheit bilden die Grundlage dieser Lernseite.</p></div></div><div class="resource"><div class="r-icon">✍️</div><div><h3>Eigene Notizen</h3><p class="small">Notiere Begriffe oder Beispiele, die du in der nächsten Einheit besprechen möchtest.</p></div></div><div class="resource"><div class="r-icon">📚</div><div><h3>Weiterführende Lektüre</h3><p class="small">Sammlung überblicksartiger Werke zur französischen Sprachwissenschaft.</p></div></div><div class="resource"><div class="r-icon">🔗</div><div><h3>Korpus- und Sprachressourcen</h3><p class="small">Für spätere Einheiten zu Korpusarbeit und Sprachdaten werden hier geeignete Ressourcen gesammelt.</p></div></div></div><div class="callout"><strong>Hinweis:</strong> Die Ressourcensammlung wird mit den von der Lehrenden ausgewählten Quellen ergänzt.</div></section>
+<section class="view" id="resources"><div class="eyebrow">Weiterlernen</div><h1>Ressourcen</h1><p class="lead">Eine Sammlung persönlicher Lernnotizen und weiterführender Ressourcen für die Lehrveranstaltung.</p><div class="card"><div class="resource"><div class="r-icon">✍️</div><div style="flex:1;min-width:0"><h3>Eigene Notizen</h3><p class="small">Deine Notizen werden in diesem Browser auf diesem Gerät gespeichert. Sie sind nicht für andere Studierende sichtbar und werden nicht automatisch zwischen Geräten synchronisiert.</p><label for="studentNotes" class="small" style="display:block;margin:12px 0 6px">Deine persönlichen Notizen</label><textarea id="studentNotes" rows="7" placeholder="Halte hier eigene Gedanken, Fragen, Beispiele oder Merkhilfen fest …" style="display:block;width:100%;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);color:var(--ink);font:inherit"></textarea><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px"><button class="btn primary" id="saveNotes" type="button">Notizen speichern</button><button class="btn" id="clearNotes" type="button">Notizen löschen</button><span id="notesStatus" class="small" role="status" aria-live="polite">Noch keine Änderung gespeichert.</span></div></div></div><div class="resource"><div class="r-icon">📚</div><div style="flex:1;min-width:0"><h3>Weiterführende Lektüre</h3><ul>
+<li>Adam, Jean-Michel (2020): <em>La linguistique textuelle. Introduction à l’analyse textuelle du discours.</em> 4e édition. Malakoff: Armand Colin.</li>
+<li>Blumenthal, Peter (1987): <em>Sprachvergleich Deutsch – Französisch.</em> Tübingen: Niemeyer.</li>
+<li>Dethloff, Uwe/Wagner, Horst (2023): <em>Die französische Grammatik. Inklusive eLearning-Kurs mit über 7.000 Aufgaben. Regeln, Anwendung, Training.</em> 4., neu bearbeitete Auflage. Tübingen: Narr Francke Attempto.</li>
+<li>Dufter, Andreas (2022): Syntax des Französischen. In: Klabunde, Ralf/Mihatsch, Wiltrud/Dipper, Stefanie (eds.): <em>Linguistik im Sprachvergleich.</em> Berlin/Heidelberg: Metzler, 189–209.</li>
+<li>Frank-Job, Barbara (2022): Diachronie des Französischen. In: Klabunde, Ralf/Mihatsch, Wiltrud/Dipper, Stefanie (eds.): <em>Linguistik im Sprachvergleich.</em> Berlin/Heidelberg: Metzler, 837–855.</li>
+<li>Fuchs, Volker/Meleuc, Serge (2004): <em>Linguistique française : français langue étrangère. Vol. II : Syntaxe, lexique, textualité.</em> Frankfurt a.M. et al.: Peter Lang.</li>
+<li>Geckeler, Horst/Wolf, Dietrich (2012): <em>Einführung in die französische Sprachwissenschaft. Ein Lehr- und Arbeitsbuch.</em> Berlin: Erich Schmidt.</li>
+<li>Gerstenberg, Annette/Dermarkar, Cynthia (2022): Varietäten des Französischen. In: Klabunde, Ralf/Mihatsch, Wiltrud/Dipper, Stefanie (eds.): <em>Linguistik im Sprachvergleich.</em> Berlin/Heidelberg: Metzler, 721–747.</li>
+<li>Kaiser, Georg A. (2020): <em>Syntax des Französischen. Einführung und Vertiefung.</em> Berlin: Erich Schmidt.</li>
+<li>Kloss, Heinz (1976): Abstandsprachen und Ausbausprachen. In: Göschel, Joachim/Nail, Norbert/van der Elst, Gaston (eds.): <em>Zur Theorie des Dialekts. Aufsätze aus 100 Jahren Forschung mit biographischen Anmerkungen zu den Autoren.</em> Wiesbaden: Steiner, 301–322.</li>
+<li>Kolboom, Ingo/Kotschi, Thomas/Reichel, Edward (eds.) (2008): <em>Handbuch Französisch. Sprache, Literatur, Kultur, Gesellschaft. Für Studium, Lehre, Praxis.</em> Berlin: Erich Schmidt.</li>
+<li>Mihatsch, Wiltrud/Heinold, Simone (2022): Morphologie des Französischen. In: Klabunde, Ralf/Mihatsch, Wiltrud/Dipper, Stefanie (eds.): <em>Linguistik im Sprachvergleich.</em> Berlin/Heidelberg: Metzler, 337–355.</li>
+<li>Pöckl, Wolfgang/Rainer, Franz/Pöll, Bernhard (2013): <em>Einführung in die romanische Sprachwissenschaft.</em> 5., aktualisierte Auflage. Berlin/Boston: De Gruyter.</li>
+<li>Pustka, Elissa (2016): <em>Einführung in die Phonetik und Phonologie des Französischen.</em> 2., durchgesehene Auflage. Berlin: Erich Schmidt.</li>
+<li>Pustka, Elissa (2022): <em>Französische Sprachwissenschaft. Eine Einführung.</em> Tübingen: Narr Francke Attempto.</li>
+<li>Schreiber, Michael (2023): <em>Kontrastive Linguistik. Französisch – Italienisch – Spanisch – Deutsch. Eine Einführung.</em> Berlin: Erich Schmidt.</li>
+<li>Stein, Achim (2014): <em>Einführung in die französische Sprachwissenschaft.</em> 4., aktualisierte und erweiterte Auflage. Stuttgart/Weimar: Metzler.</li>
+</ul></div></div><div class="resource"><div class="r-icon">🔗</div><div><h3>Korpus- und Sprachressourcen</h3><p class="small">Für spätere Einheiten zu Korpusarbeit und Sprachdaten werden hier geeignete Ressourcen gesammelt.</p></div></div></div></section>
 </main></div></div>
 <script>
 const navButtons=[...document.querySelectorAll('[data-view]')];function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'});}navButtons.forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.goto)));
@@ -300,5 +318,38 @@ document.querySelectorAll('[data-prompt]').forEach(button => {
     sendChat(button.dataset.prompt);
   });
 });
+
+const notesField = document.getElementById('studentNotes');
+const notesStatus = document.getElementById('notesStatus');
+const notesKey = 'linguamentor-student-notes-v1';
+if (notesField && notesStatus) {
+  try {
+    const savedNotes = localStorage.getItem(notesKey);
+    if (savedNotes !== null) {
+      notesField.value = savedNotes;
+      notesStatus.textContent = 'Gespeicherte Notizen geladen.';
+    }
+  } catch (error) {
+    notesStatus.textContent = 'Speichern ist in diesem Browser nicht verfügbar.';
+  }
+  document.getElementById('saveNotes').addEventListener('click', () => {
+    try {
+      localStorage.setItem(notesKey, notesField.value);
+      notesStatus.textContent = 'Notizen auf diesem Gerät gespeichert.';
+    } catch (error) {
+      notesStatus.textContent = 'Speichern nicht möglich. Bitte kopiere deine Notizen zur Sicherheit.';
+    }
+  });
+  document.getElementById('clearNotes').addEventListener('click', () => {
+    notesField.value = '';
+    try {
+      localStorage.removeItem(notesKey);
+      notesStatus.textContent = 'Notizen wurden gelöscht.';
+    } catch (error) {
+      notesStatus.textContent = 'Feld geleert. Gespeicherte Daten konnten nicht gelöscht werden.';
+    }
+  });
+}
+
 </script>
 </body></html>
