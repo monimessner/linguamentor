@@ -41,6 +41,65 @@ const questions=[
 {title:'Mange !',prompt:'Um welchen Satztyp handelt es sich?',opts:['Deklarativsatz','Interrogativsatz','Imperativsatz'],correct:2,why:'„Mange !“ ist ein Imperativsatz bzw. Aufforderungssatz.'},
 {title:'Le chien mange un os.',prompt:'Welche Frage beantwortet die Analyse der Wortarten?',opts:['Welche Aufgabe hat „un os“ im Satz?','Zu welcher grammatischen Klasse gehört „chien“?','Welche semantische Rolle hat der Hund?'],correct:1,why:'Die Wortartenanalyse fragt nach der grammatischen Klasse eines Wortes. „Chien“ ist ein Nomen. Die syntaktische Funktion und die semantische Rolle sind andere Analyseebenen.'}
 ];let qi=0;const quiz=document.getElementById('quiz'),feedback=document.getElementById('qfeedback');function renderQ(){let q=questions[qi];quiz.innerHTML=`<div class="qmeta">FRAGE ${qi+1} VON ${questions.length}</div><h2>${q.title}</h2><p>${q.prompt}</p><div class="options">${q.opts.map((o,i)=>`<label class="option"><input type="radio" name="answer" value="${i}"><span>${o}</span></label>`).join('')}</div>`;feedback.className='hidden';feedback.textContent='';document.querySelectorAll('[data-q]').forEach(b=>b.classList.toggle('active',Number(b.dataset.q)===qi));document.getElementById('prev').disabled=qi===0;document.getElementById('next').disabled=qi===questions.length-1;}document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{qi=Number(b.dataset.q);renderQ()}));document.getElementById('prev').addEventListener('click',()=>{if(qi>0){qi--;renderQ()}});document.getElementById('next').addEventListener('click',()=>{if(qi<questions.length-1){qi++;renderQ()}});document.getElementById('check').addEventListener('click',()=>{const selected=document.querySelector('input[name="answer"]:checked');if(!selected){feedback.className='feedback try';feedback.textContent='Wähle zuerst eine Antwort aus. Du kannst deine Überlegung anschließend überprüfen.';return}const q=questions[qi],ok=Number(selected.value)===q.correct;feedback.className='feedback '+(ok?'good':'try');feedback.innerHTML=`<strong>${ok?'Richtig!':'Noch nicht ganz.'}</strong><br>${q.why}`});renderQ();
-const chatlog=document.getElementById('chatlog'),chatinput=document.getElementById('chatinput');function answerFor(q){const s=q.toLowerCase();if(s.includes('satz')&&s.includes('äußerung'))return 'Ein Satz ist eine sprachliche Einheit, die den Konstruktionsregeln der Sprache folgt und ein Prädikat mit mindestens einem finiten Verb enthält. Eine Äußerung ist ein konkretes kommunikatives Ereignis in einem Kontext und kann auch kürzer sein, etwa „Un café ?“. Denk also an die Form einer Einheit und an ihre Verwendung in einer Situation.';if(s.includes('koordination')||s.includes('subordination'))return 'Bei der Koordination werden gleichrangige Einheiten verbunden. Bei der Subordination ist ein Teilsatz einem anderen untergeordnet. Vergleiche „Je me fais un café et je lis“ mit „Lorsque les policiers sont arrivés, les cambrioleurs se sont enfuis“. Kannst du den untergeordneten Teilsatz im zweiten Beispiel finden?';if(s.includes('satzart')||s.includes('imperativ')||s.includes('frage'))return 'Die drei grundlegenden Satztypen in deinen Folien sind Deklarativsatz (Aussage: „Le chat mange.“), Interrogativsatz (Frage: „Qu’est-ce qu’il mange ?“) und Imperativsatz (Aufforderung: „Mange !“). Satzzeichen und in gesprochener Sprache die Intonation helfen bei der Einordnung.';if(s.includes('hinweis')||s.includes('lösung'))return 'Gerne. Schau zuerst darauf, ob die Äußerung ein finites Verb enthält. Frage dich dann, ob sie in der gegebenen Situation trotzdem eine verständliche kommunikative Funktion erfüllt. Welche Beobachtung hilft dir weiter?';if(s.includes('syntaxe')||s.includes('syntax'))return 'Syntax ist die Lehre vom Satzbau. Sie untersucht, wo Wörter und Wortgruppen stehen, wie sie zueinander in Beziehung stehen und wie daraus Satzbedeutungen entstehen. In deinen Folien werden dafür unter anderem Klassenbildung (Wortarten) und Gruppenbildung (Phrasen/Syntagmen) eingeführt.';return 'Gute Frage! In dieser Demo kann ich vor allem die Themen der ersten Einheit erklären: Syntax, Satz und Äußerung, einfache und komplexe Sätze, Koordination und Subordination sowie Satzarten. Versuch gern, deine Frage auf einen dieser Begriffe zu beziehen. In der späteren Version wird hier ein KI-Mentor mit deinen Kursmaterialien verbunden.'}function sendChat(text){if(!text.trim())return;const user=document.createElement('div');user.className='bubble user';user.textContent=text;chatlog.appendChild(user);const bot=document.createElement('div');bot.className='bubble';bot.textContent=answerFor(text);chatlog.appendChild(bot);chatinput.value='';chatlog.scrollTop=chatlog.scrollHeight}document.getElementById('chatform').addEventListener('submit',e=>{e.preventDefault();sendChat(chatinput.value)});document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendChat(b.dataset.prompt)));
+
+const chatlog = document.getElementById('chatlog');
+const chatinput = document.getElementById('chatinput');
+const chatform = document.getElementById('chatform');
+
+async function sendChat(text) {
+  const question = text.trim();
+  if (!question) return;
+
+  const user = document.createElement('div');
+  user.className = 'bubble user';
+  user.textContent = question;
+  chatlog.appendChild(user);
+
+  chatinput.value = '';
+
+  const bot = document.createElement('div');
+  bot.className = 'bubble';
+  bot.textContent = 'Ich überlege ...';
+  chatlog.appendChild(bot);
+  chatlog.scrollTop = chatlog.scrollHeight;
+
+  const submitButton = chatform.querySelector('button');
+  submitButton.disabled = true;
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Die Anfrage ist fehlgeschlagen.');
+    }
+
+    bot.textContent = data.answer || 'Es wurde keine Antwort zurückgegeben.';
+  } catch (error) {
+    bot.textContent =
+      'Leider konnte ich gerade nicht antworten. Bitte versuche es erneut.';
+    console.error('LinguaMentor:', error);
+  } finally {
+    submitButton.disabled = false;
+    chatinput.focus();
+    chatlog.scrollTop = chatlog.scrollHeight;
+  }
+}
+
+chatform.addEventListener('submit', event => {
+  event.preventDefault();
+  sendChat(chatinput.value);
+});
+
+document.querySelectorAll('[data-prompt]').forEach(button => {
+  button.addEventListener('click', () => {
+    sendChat(button.dataset.prompt);
+  });
+});
 </script>
 </body></html>
